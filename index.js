@@ -1,20 +1,22 @@
-const express = require('express');
+const express = require("express");
 const app = express(); // Creating an instance of the Express application
-const cors = require('cors'); // Middleware for handling Cross-Origin Resource Sharing (CORS) requests
-const cookieParser = require('cookie-parser'); // Middleware for parsing HTTP request cookies
-const helmet = require('helmet'); // Middleware for Express application security
-const WebSocket = require('ws'); // Library for creating WebSocket servers
-const path = require('path');
+const cors = require("cors"); // Middleware for handling Cross-Origin Resource Sharing (CORS) requests
+const cookieParser = require("cookie-parser"); // Middleware for parsing HTTP request cookies
+const helmet = require("helmet"); // Middleware for Express application security
+const WebSocket = require("ws"); // Library for creating WebSocket servers
+const path = require("path");
 const mongoURI = process.env.MONGODB_URI;
 
 // Creating an instance of WebSocket.Server
 const wss = new WebSocket.Server({ noServer: true });
 
 // Basic CORS configuration
-app.use(cors({
-    origin: ['https://flamsg.onrender.com', 'http://localhost'],
-    credentials: true
-}));
+app.use(
+    cors({
+        origin: ["https://flamsg.onrender.com", "http://localhost"],
+        credentials: true,
+    }),
+);
 
 // Middleware configuration
 app.use(cookieParser());
@@ -22,10 +24,10 @@ app.use(express.json());
 app.use(helmet());
 
 // Serve static files from the "dist" directory (assuming it was created by Vite build)
-app.use(express.static(path.join(__dirname, './_frontend/dist'));
+app.use(express.static(path.join(__dirname, "./_frontend/dist")));
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, './_frontend/dist/index.html'));
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./_frontend/dist/index.html"));
 });
 
 // Middleware to make the WebSocket.Server instance global
@@ -35,27 +37,27 @@ app.use((req, res, next) => {
 });
 
 // Connect to the MongoDB database
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 });
 const db = mongoose.connection;
 db.once("open", () => console.log("Database connection successful"));
 
 // Import routers for different resources
-const usersRouter = require('./routes/users.js');
-const friendsRouter = require('./routes/friends.js');
+const usersRouter = require("./routes/users.js");
+const friendsRouter = require("./routes/friends.js");
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.send("Welcome!");
 });
 
 // Routes for user operations
-app.use('/users', usersRouter);
+app.use("/users", usersRouter);
 
 // Routes for friend operations
-app.use('/friends', friendsRouter);
+app.use("/friends", friendsRouter);
 
 // Server setup
 const server = app.listen(3000, () => {
@@ -63,13 +65,13 @@ const server = app.listen(3000, () => {
 });
 
 // Connecting the WebSocket server to the HTTP server
-server.on('upgrade', (request, socket, head) => {
+server.on("upgrade", (request, socket, head) => {
     wss.handleUpgrade(request, socket, head, (ws) => {
         // Get the cookie string from the "cookie" field in the request header
         const cookieHeader = request.headers.cookie;
         if (cookieHeader) {
             // Parse cookies using the "cookie" module
-            const cookie = require('cookie');
+            const cookie = require("cookie");
             const cookies = cookie.parse(cookieHeader);
             // To handle some implementation errors, this check is necessary
             if (cookies.userData) {
@@ -84,11 +86,11 @@ server.on('upgrade', (request, socket, head) => {
                 ws._id = userId;
             }
         }
-        wss.emit('connection', ws, request);
+        wss.emit("connection", ws, request);
     });
 });
 
 // WebSocket error handling
-wss.on('error', (error) => {
-    console.error('WebSocket Error:', error);
+wss.on("error", (error) => {
+    console.error("WebSocket Error:", error);
 });

@@ -23,7 +23,7 @@ module.exports = {
         await newUser.save(); // Salva il nuovo utente nel database
 
         // Restituisce una risposta di successo con un messaggio appropriato
-        return res.status(200).json({ message: 'Registrazione avvenuta con successo' });
+        return res.status(200).json({ message: 'Registrazione avvenuta con successo. Puoi ora eseguire l\'accesso cliccando sul pulsante apposito.' });
       } catch (error) {
         console.error('Errore durante la registrazione:', error);
         // Se si verifica un errore durante la registrazione, restituisce un errore 500 con un messaggio appropriato
@@ -40,7 +40,7 @@ module.exports = {
   login: async (req, res) => {
     try {
       // Ottieni i dati dalla richiesta HTTP
-      const { username, password, rememberMe, firsttime } = req.body;
+      const { username, password, rememberMe } = req.body;
 
       try {
         // Cerca un utente nel database con l'username fornito
@@ -75,28 +75,12 @@ module.exports = {
           sameSite: 'lax'
         };
 
-        // Imposta il cookie nel header della risposta
+        // Imposta il cookie nell'header della risposta
         res.cookie('userData', cookieData, cookieOptions);
 
-        // Se è il primo accesso dell'utente, restituisci un messaggio di successo
-        if (firsttime) {
-          return res.status(200).json({ message: 'Accesso riuscito' });
-        } else {
-          let update = '';
-          console.log('Secondo tentativo di login in corso...');
-
-          // Verifica se il cookie è stato ricevuto ma non salvato correttamente
-          if (req.cookies.userData) {
-            update = 'Cookie rilevato ma non salvato. Risoluzione in corso...';
-          } else {
-            update = 'Cookie non ricevuti correttamente. Forzatura in corso...';
-          }
-
-          console.log(update);
-
-          // Restituisci un messaggio di stato e i dati relativi al cookie
-          return res.status(200).json({ message: update, cookieData: cookieData, cookieOptions: cookieOptions });
-        }
+        // Restituisci un messaggio di successo
+		return res.status(200).json({ message: 'Accesso riuscito' });
+		
       } catch (error) {
         console.error('Errore durante il login:', error);
 

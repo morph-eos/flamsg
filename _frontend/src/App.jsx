@@ -20,7 +20,7 @@ export default function App() {
       setBackend('http://localhost:3000');
       console.log('Esecuzione in Localhost');
     } else {
-      setBackend('https://flamsg.onrender.com/');
+      setBackend('https://flamsg.onrender.com');
       console.log('Esecuzione in Render');
     }
   }, []);

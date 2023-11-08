@@ -9,7 +9,7 @@ export default function Start({ icon, backend }) {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [cookies, setCookie] = useCookies();
+  const [cookies] = useCookies();
   axios.defaults.withCredentials = true;
 
   // Gestore per il cambiamento del nome utente
@@ -36,7 +36,7 @@ export default function Start({ icon, backend }) {
   const handleLogin = async (event) => {
     event.preventDefault();
     axios
-      .post(backend + '/users/login', { username, password, rememberMe, firsttime: true })
+      .post(backend + '/users/login', { username, password, rememberMe})
       .then((response) => {
         if (response.status === 200) {
           setInfo(response.data.message);
@@ -45,6 +45,8 @@ export default function Start({ icon, backend }) {
       .catch((error) => {
         setInfo(error.response.data.message);
       });
+	const rootUrl = window.location.origin; // Ottieni l'URL radice del tuo sito
+    window.location.href = rootUrl; // Naviga alla route radice, ricaricando senza mantenere alcun username nello URL
   };
 
   // Gestore per la registrazione

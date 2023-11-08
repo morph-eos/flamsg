@@ -24,6 +24,12 @@ app.use(helmet());
 // Servi i file statici nella directory "dist" (assumendo che sia stata creata dalla build di Vite)
 app.use(express.static(path.join(__dirname, './_frontend/dist')));
 
+app.get('/*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+        res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+    }
+});
+
 // Middleware per rendere l'istanza di WebSocket.Server globale
 app.use((req, res, next) => {
   req.wss = wss; // Aggiungi l'istanza di WebSocket.Server all'oggetto req

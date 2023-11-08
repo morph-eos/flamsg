@@ -22,7 +22,7 @@ export default function Chats({ backend, friendListUpdates, friendRequestUpdates
     axios
       .post(backend + '/users/logOrQuit', { exit: false }) // Richiesta al backend per verificare i cookie
       .then((response) => {
-        if (response.data.message === 'Cookie verificati') {
+        if (response.ok) {
           const rawPendingFList = response.data.pendingFList;
           const requests = rawPendingFList.map((item) =>
             axios.post(backend + '/users/userById', { userId: item })

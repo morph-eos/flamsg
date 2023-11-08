@@ -160,6 +160,12 @@ export default function Start({ icon, backend }) {
               </form>
             </div>
           </div>
+          {/* Informazioni sulla natura e la sicurezza del progetto */}
+          <div className="has-text-centered mt-5">
+            <p className="is-size-6">
+              <strong>Nota:</strong> Questo progetto è per scopi educativi e non è destinato all'uso in produzione. I messaggi non sono crittografati, e non è disponibile una politica sulla privacy. Si prega di fare attenzione quando si condividono informazioni sensibili. Solo le password sono crittografate per motivi di sicurezza. Questo sito utilizza un solo cookie per mantenere la sessione di login attiva, 0 cookie esterni.
+            </p>
+          </div>
         </div>
       </div>
     </div>

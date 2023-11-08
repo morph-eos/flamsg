@@ -11,19 +11,17 @@ export default function App() {
   //Istanza di useCookies() usata per le varie operazioni
   const [cookies] = useCookies();
   //Vari stati relativi alla connesione col Backend
-  //Nota: Cosí come questo semplice controllo che permette di capire in che ambiente ci troviamo, ci sono numerosi controlli nel codice che permettono di eseguire lo stesso codice sia in locale (ad es con WebStorm) che tramite Replit online
+  //Nota: Cosí come questo semplice controllo che permette di capire in che ambiente ci troviamo, ci sono numerosi controlli nel codice che permettono di eseguire lo stesso codice sia in locale (ad es con WebStorm) che tramite Render online
   const [backend, setBackend] = useState('');
-  const localhostUrl = 'http://localhost:3000';
-  const replUrl = 'https://backend36.m04ph3u2.repl.co';
 
-  //Controllo riguardante l'esecuzione del programma in locale o tramite internet su Replit
+  //Controllo riguardante l'esecuzione del programma in locale o tramite internet su Render
   useEffect(() => {
     if (window.location.origin.includes('localhost')) {
-      setBackend(localhostUrl);
+      setBackend('http://localhost:3000');
       console.log('Esecuzione in Localhost');
     } else {
-      setBackend(replUrl);
-      console.log('Esecuzione in Replit');
+      setBackend('https://flamsg.onrender.com/');
+      console.log('Esecuzione in Render');
     }
   }, []);
 

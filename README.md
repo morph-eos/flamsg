@@ -6,6 +6,8 @@ FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web applicati
   <a href="https://flamsg.onrender.com/">
     <img src="https://flamsg.onrender.com/assets/icon-c4464b3a.png" width="50%" alt="FlaMSG Preview">
   </a>
+  <br>
+  <i>Click the image to visit FlaMSG</i>
 </p>
 
 ## Features

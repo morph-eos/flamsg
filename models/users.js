@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
-// Metodo per confrontare la password (considerando l'hashing)
+// Function to check the password (for Hashing)
 userSchema.methods.comparePassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);

@@ -1,94 +1,94 @@
 const express = require('express');
-const app = express(); // Creazione di un'istanza dell'applicazione Express
-const cors = require('cors'); // Middleware per la gestione delle richieste CORS (Cross-Origin Resource Sharing)
-const cookieParser = require('cookie-parser'); // Middleware per il parsing dei cookie delle richieste HTTP
-const helmet = require('helmet'); // Middleware per la sicurezza delle applicazioni Express
-const WebSocket = require('ws'); // Libreria per la creazione di server WebSocket
+const app = express(); // Creating an instance of the Express application
+const cors = require('cors'); // Middleware for handling Cross-Origin Resource Sharing (CORS) requests
+const cookieParser = require('cookie-parser'); // Middleware for parsing HTTP request cookies
+const helmet = require('helmet'); // Middleware for Express application security
+const WebSocket = require('ws'); // Library for creating WebSocket servers
 const path = require('path');
 const mongoURI = process.env.MONGODB_URI;
 
-//Creazione dell'istanza di WebSocket.Server
+// Creating an instance of WebSocket.Server
 const wss = new WebSocket.Server({ noServer: true });
 
-// Configurazione di base di cors
+// Basic CORS configuration
 app.use(cors({
-  origin: ['https://flamsg.onrender.com', 'http://localhost'],
-  credentials: true
+    origin: ['https://flamsg.onrender.com', 'http://localhost'],
+    credentials: true
 }));
 
-// Configurazione dei middleware
+// Middleware configuration
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
 
-// Servi i file statici nella directory "dist" (assumendo che sia stata creata dalla build di Vite)
-app.use(express.static(path.join(__dirname, './_frontend/dist')));
+// Serve static files from the "dist" directory (assuming it was created by Vite build)
+app.use(express.static(path.join(__dirname, './_frontend/dist'));
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './_frontend/dist/index.html'));
+    res.sendFile(path.join(__dirname, './_frontend/dist/index.html'));
 });
 
-// Middleware per rendere l'istanza di WebSocket.Server globale
+// Middleware to make the WebSocket.Server instance global
 app.use((req, res, next) => {
-  req.wss = wss; // Aggiungi l'istanza di WebSocket.Server all'oggetto req
-  next();
+    req.wss = wss; // Add the WebSocket.Server instance to the req object
+    next();
 });
 
-// Connessione al database MongoDB
+// Connect to the MongoDB database
 const mongoose = require('mongoose');
 mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 const db = mongoose.connection;
-db.once("open", () => console.log("Connessione al DB eseguita con successo"));
+db.once("open", () => console.log("Database connection successful"));
 
-// Importa i router per le diverse risorse
+// Import routers for different resources
 const usersRouter = require('./routes/users.js');
 const friendsRouter = require('./routes/friends.js');
 
 app.get('/', (req, res) => {
-  res.send("Benvenuto!");
+    res.send("Welcome!");
 });
 
-// Route per le operazioni sugli utenti
+// Routes for user operations
 app.use('/users', usersRouter);
 
-// Route per le operazioni sugli amici
+// Routes for friend operations
 app.use('/friends', friendsRouter);
 
-// Setup del server
+// Server setup
 const server = app.listen(3000, () => {
-  console.log("App in ascolto sulla porta 3000");
+    console.log("App listening on port 3000");
 });
 
-// Collegamento del server WebSocket al server HTTP
+// Connecting the WebSocket server to the HTTP server
 server.on('upgrade', (request, socket, head) => {
-  wss.handleUpgrade(request, socket, head, (ws) => {
-    // Ottieni la stringa dei cookie dal campo "cookie" dell'header della richiesta
-    const cookieHeader = request.headers.cookie;
-    if (cookieHeader) {
-      // Parse dei cookie utilizzando il modulo "cookie"
-      const cookie = require('cookie');
-      const cookies = cookie.parse(cookieHeader);
-      // Per risolvere alcuni degli errori di implementazione c'é bisogno di questo controllo
-      if (cookies.userData) {
-        let userData;
-        if (cookies.userData.startsWith("j")) {
-          userData = JSON.parse(cookies.userData.substring(2));
-        } else {
-          userData = JSON.parse(cookies.userData);
+    wss.handleUpgrade(request, socket, head, (ws) => {
+        // Get the cookie string from the "cookie" field in the request header
+        const cookieHeader = request.headers.cookie;
+        if (cookieHeader) {
+            // Parse cookies using the "cookie" module
+            const cookie = require('cookie');
+            const cookies = cookie.parse(cookieHeader);
+            // To handle some implementation errors, this check is necessary
+            if (cookies.userData) {
+                let userData;
+                if (cookies.userData.startsWith("j")) {
+                    userData = JSON.parse(cookies.userData.substring(2));
+                } else {
+                    userData = JSON.parse(cookies.userData);
+                }
+                const userId = userData._id;
+                // Add the user ID as a custom property to the WebSocket client
+                ws._id = userId;
+            }
         }
-        const userId = userData._id;
-        // Aggiungi l'ID utente come proprietà personalizzata al client WebSocket
-        ws._id = userId;
-      }
-    }
-    wss.emit('connection', ws, request);
-  });
+        wss.emit('connection', ws, request);
+    });
 });
 
-// Gestione degli errori WebSocket
+// WebSocket error handling
 wss.on('error', (error) => {
-  console.error('Errore WebSocket:', error);
+    console.error('WebSocket Error:', error);
 });

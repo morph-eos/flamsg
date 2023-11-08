@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Importa il controller degli utenti
 const usersController = require('../controllers/users.js');
 
 // POST /users/register

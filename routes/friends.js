@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Importa il controller delle amicizie
 const friendsController = require('../controllers/friends.js');
 
 // POST /users/addFriend 

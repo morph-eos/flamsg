@@ -45,8 +45,7 @@ export default function Start({ icon, backend }) {
       .catch((error) => {
         setInfo(error.response.data.message);
       });
-	const rootUrl = window.location.origin; // Ottieni l'URL radice del tuo sito
-    window.location.href = rootUrl+'/home'; // Naviga alla route radice, ricaricando senza mantenere alcun username nello URL
+	window.location.reload(false); //Ricarica la pagina attuale
   };
 
   // Gestore per la registrazione

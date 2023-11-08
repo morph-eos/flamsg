@@ -522,8 +522,9 @@ module.exports = {
             const password = access_id;
             const { friendUsername, message } = req.body;
             try {
+
                 // Find and verify the current user in the database
-                const userObj = await User.findOne({ username, __id, password });
+                const userObj = await User.findOne({ username, _id, password });
                 if (!userObj) {
                     return res.status(404).json({ message: "User not found" });
                 }
@@ -534,42 +535,31 @@ module.exports = {
                     return res.status(404).json({ message: "Friend user not found" });
                 }
 
-                // Find the friendship between the current user and the friend user
-                const friendship = await friendshipSrc({
-                    userId: userObj._id,
-                    friendId: addedUser._id,
-                });
+                // Cerca l'amicizia tra l'utente corrente e l'utente amico 
+                const friendship = await friendshipSrc({ userId: userObj._id, friendId: addedUser._id });
                 if (!friendship) {
                     return res.status(404).json({ message: "Friendship not found" });
                 }
 
-                // Check if the message is empty
+                // Verifica se il messaggio è vuoto
                 if (message.trim().length === 0) {
                     return res.status(400).json({ message: "Empty message" });
                 }
 
-                // Add the message to the friendship's chat
+                // Aggiungi il messaggio alla chat dell'amicizia
                 friendship.chat.push({
                     from: userObj._id,
                     content: message,
-                    date: new Date(),
+                    date: new Date()
                 });
                 await friendship.save();
 
                 // Activate and use the WebSocket corresponding to the current user and the friend user
-                easyWS({
-                    clients: req.wss.clients,
-                    data: "chat_update",
-                    ids: [addedUser._id, userObj._id],
-                    more: [addedUser.username, userObj.username],
-                });
-                easyWS({
-                    clients: req.wss.clients,
-                    data: "friendList_update",
-                    ids: [addedUser._id, userObj._id],
-                });
+                easyWS({ clients: req.wss.clients, data: "chat_update", ids: [addedUser._id, userObj._id], more: [addedUser.username, userObj.username] });
+                easyWS({ clients: req.wss.clients, data: "friendList_update", ids: [addedUser._id, userObj._id] });
 
                 return res.status(200).json({ message: "Message sent successfully" });
+
             } catch (error) {
                 // General error handling
                 console.error("An error occurred while sending the message:", error);

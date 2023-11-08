@@ -25,9 +25,7 @@ app.use(helmet());
 app.use(express.static(path.join(__dirname, './_frontend/dist')));
 
 app.get('/*', (req, res) => {
-    if (!req.path.startsWith('/api')) {
-        res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-    }
+  res.sendFile(path.join(__dirname, './_frontend/dist/index.html'));
 });
 
 // Middleware per rendere l'istanza di WebSocket.Server globale

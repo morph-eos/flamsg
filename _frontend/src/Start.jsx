@@ -42,7 +42,7 @@ export default function Start({ icon, backend }) {
           setInfo(response.data.message);
 		  setTimeout(function() {
 			window.location.reload(false); //Ricarica la pagina attuale
-		  }, 1500);
+		  }, 900);
         }
       })
       .catch((error) => {

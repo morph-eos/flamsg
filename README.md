@@ -17,7 +17,8 @@ FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web applicati
 - **Message History**: View chat history and previous messages.
 - **Responsive Design**: Works seamlessly on both desktop and mobile devices.
 
-**Please Note**: This project is for educational purposes, and it is not intended for production use. Messages are not encrypted, and there is no privacy policy. Be cautious when sharing sensitive information.
+**Please Note**: This project is for educational purposes, and it is not intended for production use. Messages are not encrypted, and there is no privacy policy. Be cautious when sharing sensitive information. This webapp uses just 1 cookie to keep your login session active, 0 third-party cookies.
+            </p>
 
 ## Tech Stack
 

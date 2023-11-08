@@ -2,7 +2,11 @@
 
 FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web application developed as a university project. It provides a simple and functional chat platform for users to engage in real-time conversations.
 
-![FlaMSG Preview](https://flamsg.onrender.com/assets/icon-c4464b3a.png)
+<p align="center">
+  <a href="https://flamsg.onrender.com/">
+    <img src="https://flamsg.onrender.com/assets/icon-c4464b3a.png" width="50%" alt="FlaMSG Preview">
+  </a>
+</p>
 
 ## Features
 

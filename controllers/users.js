@@ -161,12 +161,7 @@ module.exports = {
 
                     if (userObj) {
                         // Return a positive response if the user is found in the database
-                        return res
-                            .status(200)
-                            .json({
-                                message: "Cookies verified",
-                                pendingFList: userObj.pendingFList,
-                            });
+                        return res.status(200).json({ message: 'Cookies verified', pendingFList: userObj.pendingFList });
                     }
                 }
             } catch (error) {

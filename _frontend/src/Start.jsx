@@ -148,7 +148,7 @@ export default function Start({ icon, backend }) {
                     {/* Information about the project's nature and security */}
                     <div className="has-text-centered mt-5">
                         <p className="is-size-6">
-                            <strong>Note:</strong> This project is for educational purposes and is not intended for production use. Messages are not encrypted, and there is no privacy policy. Please be cautious when sharing sensitive information. Only passwords are encrypted for security reasons. This site uses a single cookie to maintain the login session, with 0 external cookies.
+                            <strong>Please Note:</strong> This project is for educational purposes, and it is not intended for production use. Messages are not encrypted, and there is no privacy policy. Be cautious when sharing sensitive information. This webapp uses just 1 cookie to keep your login session active, 0 third-party cookies.
                         </p>
                     </div>
                 </div>

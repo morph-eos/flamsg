@@ -1,0 +1,81 @@
+.icon {
+  width: 64px;
+  height: 64px;
+}
+
+.bigicon {
+  width: 128px;
+  height: 128px;
+}
+
+.message-timestamp {
+  font-size: 12px;
+  color: gray;
+  margin-top: -4px;
+}
+
+.scrollable-list-container {
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.scrollable-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px;
+}
+
+.bubble {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.username {
+  margin-right: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.accept-button,
+.deny-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chat-list {
+  overflow-y: auto;
+}
+
+.last-message {
+  font-size: 0.8em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -6px;
+}

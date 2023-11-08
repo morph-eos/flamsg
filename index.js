@@ -12,7 +12,7 @@ const wss = new WebSocket.Server({ noServer: true });
 
 // Configurazione di base di cors
 app.use(cors({
-  origin: ['https://backend36.m04ph3u2.repl.co', 'http://localhost:5173'],
+  origin: ['https://flamsg.onrender.com/', 'http://localhost:5173'],
   credentials: true
 }));
 

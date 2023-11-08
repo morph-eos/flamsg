@@ -8,9 +8,7 @@
     "start-server": "node app.js",
     "install-frontend": "cd _frontend && npm install",
     "build-frontend": "cd _frontend && npm run build",
-    "start-frontend": "cd _frontend && npm run start",
     "build-all": "concurrently \"npm install \" \"cd _frontend && npm install && npm run build \"",
-    "start-all": "concurrently \"cd _frontend && npm run start \" \"nodemon app.js \" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

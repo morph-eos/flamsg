@@ -40,12 +40,14 @@ export default function Start({ icon, backend }) {
       .then((response) => {
         if (response.status === 200) {
           setInfo(response.data.message);
+		  setTimeout(function() {
+			window.location.reload(false); //Ricarica la pagina attuale
+		  }, 1500);
         }
       })
       .catch((error) => {
         setInfo(error.response.data.message);
       });
-	window.location.reload(false); //Ricarica la pagina attuale
   };
 
   // Gestore per la registrazione

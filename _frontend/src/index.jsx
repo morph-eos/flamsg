@@ -1,4 +1,4 @@
-import 'bulma/css/bulma.min.css'; //Framework CSS Bulma, permette di usare lo stile della libreria Bulma
+import 'bulma/css/bulma.min.css'; //Framework CSS Bulma
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'

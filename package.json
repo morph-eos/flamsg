@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install-server": "npm install",
-    "start-server": "node app.js",
+    "start-server": "node index.js",
     "install-frontend": "cd _frontend && npm install",
     "build-frontend": "cd _frontend && npm run build",
     "build-all": "concurrently \"npm install \" \"cd _frontend && npm install && npm run build \"",

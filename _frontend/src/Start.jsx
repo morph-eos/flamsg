@@ -39,24 +39,6 @@ export default function Start({ icon, backend }) {
       .post(backend + '/users/login', { username, password, rememberMe, firsttime: true })
       .then((response) => {
         if (response.status === 200) {
-          if (!cookies.userData) {
-            axios
-              .post(backend + '/users/login', { username, password, rememberMe, firsttime: false })
-              .then((response) => {
-                // Salva i dati dell'utente nel cookie
-                setCookie('userData', response.data.cookieData, {
-                  path: '/',
-                  maxAge: response.data.cookieOptions.maxAge,
-                  sameSite: response.data.cookieOptions.sameSite,
-                  secure: response.data.cookieOptions.secure
-                });
-              })
-              .catch((error) => {
-                setInfo(error.response.data.message);
-              });
-          }
-          setInfo('Benvenuto ' + username);
-        } else {
           setInfo(response.data.message);
         }
       })

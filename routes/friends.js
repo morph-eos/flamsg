@@ -4,11 +4,6 @@ const router = express.Router();
 // Importa il controller delle amicizie
 const friendsController = require('../controllers/friends.js');
 
-// GET /friends
-router.get('/', (req, res) => {
-  res.send('Router per la gestione delle amicizie');
-});
-
 // POST /users/addFriend 
 router.post('/addFriend',friendsController.addFriend);
 

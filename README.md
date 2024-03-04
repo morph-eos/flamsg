@@ -4,7 +4,7 @@ FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web applicati
 
 <p align="center">
   <a href="https://flamsg.onrender.com/">
-    <img src="https://flamsg.onrender.com/assets/icon-c4464b3a.png" width="50%" alt="FlaMSG Preview">
+    <img src="./_frontend/src/icon.png" width="300px" alt="FlaMSG Preview">
   </a>
   <br>
   <i>Click the image to visit FlaMSG</i>
@@ -34,15 +34,6 @@ FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web applicati
   - bcrypt (for password hashing)
   - WebSocket (for real-time communication)
 
-## Contributing
-
-If you'd like to contribute to this project, please follow these guidelines:
-
-- Fork the repository and create a new branch for your feature or bug fix.
-- Write clear, concise code and comments.
-- Test your changes thoroughly.
-- Create a pull request with a detailed description of your changes.
-
 ## License
 
 This project is open-source and available under the MIT License.
@@ -51,4 +42,4 @@ This project is open-source and available under the MIT License.
 
 Special thanks to my university "Politecnico di Bari" and Prof. Antonio Ferrara for the guidelines on the MERN Fullstack.
 
-Enjoy using FlaMSG! Feel free to reach out with any questions or feedback.
+Enjoy using FlaMSG! Feel free to reach out with any questions or feedback<img src="https://flamsg.onrender.com/assets/loading-fe1b251d.gif" width="0.2%">

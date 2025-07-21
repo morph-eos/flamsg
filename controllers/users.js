@@ -1,6 +1,14 @@
 const User = require("../models/users.js");
 const bcrypt = require("bcryptjs");
 
+/**
+ * User Controller - Handles authentication and user management
+ * 
+ * NOTE: This implementation uses a simple cookie-based authentication system
+ * suitable for educational purposes. In production, consider using JWT tokens
+ * with proper security measures.
+ */
+
 module.exports = {
     // Function for registering a new user
     register: async (req, res) => {

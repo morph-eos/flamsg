@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+/**
+ * User Schema - Defines the structure for user documents in MongoDB
+ * Includes authentication and friend system functionality
+ */
 const userSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -9,24 +13,25 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true // Ensures no duplicate usernames
   },
   password: {
     type: String,
-    required: true
+    required: true // Stored as bcrypt hash, never plain text
   },
   pendingFList: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User' // Array of user IDs who sent friend requests
   }]
 });
 
-// Function to check the password (for Hashing)
+// Method to compare provided password with stored hash
 userSchema.methods.comparePassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
   } catch (error) {
-    console.log("Errore ", error);
+    console.log("Password comparison error:", error);
+    return false;
   }
 };
 

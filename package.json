@@ -1,7 +1,7 @@
 {
-  "name": "FlaMSG",
-  "version": "2.0.0",
-  "description": "",
+  "name": "flamsg",
+  "version": "2.0.1",
+  "description": "Full-stack MERN chat application with real-time messaging and friend system",
   "main": "index.js",
   "scripts": {
     "install-server": "npm install",
@@ -11,9 +11,9 @@
     "build-all": "concurrently \"npm install \" \"cd _frontend && npm install && npm run build \"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["mern", "chat", "websocket", "real-time", "mongodb", "react", "express"],
+  "author": "Stefano Sciacovelli (Morpheus)",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^18.0.6",
     "bcryptjs": "^2.4.3",

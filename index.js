@@ -5,16 +5,20 @@ const cookieParser = require("cookie-parser"); // Middleware for parsing HTTP re
 const helmet = require("helmet"); // Middleware for Express application security
 const WebSocket = require("ws"); // Library for creating WebSocket servers
 const path = require("path");
+
+// IMPORTANT: MongoDB URI should be set as environment variable
+// Create a .env file with: MONGODB_URI=mongodb://localhost:27017/flamsg
 const mongoURI = process.env.MONGODB_URI;
 
-// Creating an instance of WebSocket.Server
+// Creating an instance of WebSocket.Server for real-time communication
 const wss = new WebSocket.Server({ noServer: true });
 
-// Basic CORS configuration
+// CORS configuration - allows frontend to communicate with backend
+// In production, replace with your actual domain instead of localhost
 app.use(
     cors({
         origin: ["https://flamsg.onrender.com", "http://localhost"],
-        credentials: true,
+        credentials: true, // Allow cookies to be sent with requests
     }),
 );
 
@@ -43,7 +47,8 @@ mongoose.connect(mongoURI, {
     useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.once("open", () => console.log("Database connection successful"));
+db.once("open", () => console.log("✅ Database connection successful"));
+db.on("error", (err) => console.error("❌ Database connection error:", err));
 
 // Import routers for different resources
 const usersRouter = require("./routes/users.js");
@@ -61,7 +66,9 @@ app.use("/friends", friendsRouter);
 
 // Server setup
 const server = app.listen(3000, () => {
-    console.log("App listening on port 3000");
+    console.log("🚀 FlaMSG Server running on port 3000");
+    console.log("📝 Frontend served from _frontend/dist");
+    console.log("🔗 WebSocket server ready for real-time chat");
 });
 
 // Connecting the WebSocket server to the HTTP server

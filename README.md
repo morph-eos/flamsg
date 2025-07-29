@@ -1,5 +1,11 @@
 # FlaMSG - FullStack MERN Chat Web App
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Database-green.svg)](https://www.mongodb.com/)
+[![WebSocket](https://img.shields.io/badge/WebSocket-Real--time-orange.svg)](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+
 FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web application developed as a university project at **Politecnico di Bari**. It provides a simple and functional chat platform for users to engage in real-time conversations with friend requests, chat history, and responsive design.
 
 <p align="center">
@@ -12,23 +18,33 @@ FlaMSG is a FullStack MERN (MongoDB, Express, React, Node.js) chat web applicati
 
 ## 📋 Table of Contents
 
-- [Features](#features)
+- [Features](#-features)
+- [Live Demo](#-live-demo)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Installation & Setup](#-installation--setup)
-- [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [Security Notes](#-security-notes)
-- [License](#license)
+- [Environment Variables](#️-environment-variables)
+- [Usage](#-usage)  
+- [License](#-license)
 - [Project History](#-project-history)
 
-## Features
+## ✨ Features
 
 - **User Authentication**: Users can create accounts and log in securely with password hashing (bcrypt).
 - **Friend System**: Send friend requests, accept/reject requests, and manage your friend list.
 - **Real-Time Chat**: Engage in real-time, two-way communication with other users via WebSocket.
 - **Message History**: View chat history and previous messages stored in MongoDB.
 - **Responsive Design**: Works seamlessly on both desktop and mobile devices using Bulma CSS.
+
+## 🌐 Live Demo
+
+### Try the Live Demo
+
+This implementation features a fully functional live demo showcasing the complete MERN chat platform capabilities. The demo provides a comprehensive demonstration of the real-time messaging system, friend management, and user authentication features developed as part of the university project at Politecnico di Bari.
+
+**Demo URL**: [https://flamsg.onrender.com](https://flamsg.onrender.com)
+
+**Note**: The demo runs on a free hosting tier, so initial loading may take 30-60 seconds as the server spins up from sleep mode.
 
 ## 🚀 Tech Stack
 
@@ -109,7 +125,7 @@ npm run build-frontend
 npm run build-all
 ```
 
-## Environment Variables
+## ⚙️ Environment Variables
 
 Create a `.env` file in the root directory with the following variables:
 
@@ -123,14 +139,12 @@ PORT=3000
 
 **Important**: Never commit your `.env` file to version control. The `.gitignore` already excludes it.
 
-## Usage
+## 🎯 Usage
 
 1. **Start the application**: Run `npm run start-server` after setting up the environment variables
 2. **Register an account**: Create a new user account on the login page
 3. **Add friends**: Search for other users by username and send friend requests
 4. **Start chatting**: Accept friend requests and start real-time conversations
-
-**Live Demo**: [https://flamsg.onrender.com](https://flamsg.onrender.com)
 
 ## 🔒 Security Notes
 
@@ -154,7 +168,7 @@ This project was created for educational purposes at Politecnico di Bari and is 
 
 **Recommendation**: Use this project as a learning reference. For production applications, implement proper JWT authentication, input validation, rate limiting, and encryption.
 
-## License
+## 📄 License
 
 This project is open-source and available under the MIT License.
 

@@ -67,7 +67,7 @@ This marked the completion of the university project and its subsequent archivin
 ### Technical Features (Originally Developed June-July 2023)
 
 - User authentication system with bcrypt password hashing
-- Real-time chat functionality using WebSocket (Socket.io)
+- Real-time chat functionality using WebSocket (ws)
 - Friend request and management system
 - MongoDB integration with Mongoose ODM
 - React frontend with Vite build system

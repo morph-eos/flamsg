@@ -58,7 +58,7 @@ A live demo is available at [flamsg.onrender.com](https://flamsg.onrender.com) (
 
 ```bash
 # Clone and install
-git clone https://github.com/M04ph3u2/FlaMSG.git
+git clone https://github.com/morph-eos/FlaMSG.git
 cd FlaMSG
 npm install
 
